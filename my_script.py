@@ -27,6 +27,6 @@ if __name__ == "__main__":
         n = int(n)
         print(f'Docker is running in interactive mode')
     except EOFError:
-        n = random.choice(range(10))
+        n = random.choice(range(1,11))
     print(f'The application will create {n} dataframe(s)')
     main(n, argv)
