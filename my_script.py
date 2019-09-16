@@ -16,6 +16,7 @@ def main(n, *args):
         out = filename.format(i+1)
         try:
             frame.to_csv(out)
+            print(frame)
             print(f'frame exported as {out}')
         except OSError as e:
             print(f'OSError writing to {out}, this file will not be produced!')
