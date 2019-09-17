@@ -2,12 +2,14 @@ import pandas as pd
 import numpy as np
 import random
 from sys import argv
-
+from ppt import PPT_Creator as PPT
 OUTPUT_DIR = './log/'
+
 
 def main(n, *args):
     n = n or 1
     filename = OUTPUT_DIR + 'frame_{0}.csv'
+    ppt = PPT()
     for i in range(n):
         data = np.array(np.random.randint(0,100,(3,4)))
         columns = ['A','B','C','D']
@@ -16,10 +18,15 @@ def main(n, *args):
         out = filename.format(i+1)
         try:
             frame.to_csv(out)
-            print(frame)
             print(f'frame exported as {out}')
         except OSError as e:
             print(f'OSError writing to {out}, this file will not be produced!')
+        ppt.add_frame(frame)
+        print(f'Added frame {n} to PPT_Creator')
+    pres = ppt.create()
+    pres_path = OUTPUT_DIR + 'presentation.pptx'
+    pres.save(pres_path)
+    print(f'Exported to {pres_path}') 
 
 
 if __name__ == "__main__":
