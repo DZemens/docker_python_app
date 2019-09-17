@@ -15,6 +15,7 @@ def main(n, *args):
         columns = ['A','B','C','D']
         index = ['Row 1', 'Row 2', 'Row 3']
         frame = pd.DataFrame(data, index=index, columns=columns, dtype=int)
+        frame /= 100
         out = filename.format(i+1)
         try:
             frame.to_csv(out)
@@ -22,7 +23,7 @@ def main(n, *args):
         except OSError as e:
             print(f'OSError writing to {out}, this file will not be produced!')
         ppt.add_frame(frame)
-        print(f'Added frame {n} to PPT_Creator')
+        print(f'Added frame {i+1} to PPT_Creator')
     pres = ppt.create()
     pres_path = OUTPUT_DIR + 'presentation.pptx'
     pres.save(pres_path)
