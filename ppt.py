@@ -8,9 +8,6 @@ class PPT_Creator(object):
     def __init__(self):
         self._data_frames = []
     @property
-    def output_path(self):
-        return self._output_path
-    @property
     def data_frames(self):
         return self._data_frames
     def add_frame(self, df):
